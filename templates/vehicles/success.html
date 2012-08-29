@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Publicación Exitosa !!!{% endblock %}
+
+{% block content %}
+<div id="content_left" class="grid_12">
+	<h2>Publicación Exitosa !!!</h2>
+	<br/>
+	<p>Tu publicación se realizó con éxito.</p>
+	<br/>
+   <a href="{% url vehicle_detail model.id model|slugify %}">Click para visualizarlo.</a>
+</div>
+
+<div id="content_right" class="grid_4">
+</div>
+<div class="clear"></div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{{ image_formset.management_form }}
+{% for form in image_formset %}
+<div {% if forloop.last %}id="last_image"{% endif %} class="grid_8 alpha omega {% if not forloop.first %}image_none{% endif %}">
+	{% for field in form %}
+	<div class="grid_2 alpha">
+		{{ field.label_tag }}
+	</div>
+	<div class="grid_6 omega">
+		{{ field }}
+	</div>
+	{% endfor %}
+</div>
+<div class="clear"></div>
+{% endfor %} 
+<div id="add_image" class="grid_6 omega prefix_2">
+	<a href="#current_image">+ Agregar nueva imagen</a>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#add_image a').click(function(){
+			var image_none = $('div.image_none:first');
+			image_none.removeClass('image_none');
+
+			if ($('div #last_image').css('display') != 'none'){
+				$('div #add_image').remove();
+			}
+			return false;
+		});
+	});
+</script>

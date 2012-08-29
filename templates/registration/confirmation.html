@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="content_left" class="grid_10">
+	{% if activate %}
+	<h2>¡Cuenta de Usuario Activada!</h2>
+	<br/>
+	<p>Su cuenta de usuario fue activada en SanLuisAutomotores.com !!</p>
+	</br>
+	<p>Ahora puede <a href="{% url login %}">Ingresar</a> y <a href="{% url create_vehicle %}">Publicar GRATIS</a> tu automotor.</p>
+	{% else %}
+	<h2>Clave de Confirmación Incorrecta</h2>
+	<br/>
+	<p>El código es erroneo, puede ser que la cuenta asociada a este código ya haya sido validada anteriormente.</p>
+	{% endif %}
+</div>
+<div id="content_right" class="grid_6">
+</div>
+<div class="clear"></div>
+{% endblock %}

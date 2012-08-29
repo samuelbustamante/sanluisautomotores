@@ -1,0 +1,14 @@
+Bienvenido/a {{ email }}.
+
+Sólo falta un paso para que comiences a ser parte de SanLuisAutomotores.
+
+Tienes 30 días para activar tu Usuario copiando y pegandolo en la barra de direcciones de tu navegador.
+
+http://www.sanluisautomotores.com{% url confirmation key %}
+
+Podras ingresar a SanLuisAutomotores con tu Usuario y Contraseña.
+
+Una vez activado tu Usuario podrás comenzar con la carga de tu currículum para luego postularte a todas
+las búsquedas de trabajo que desees.
+
+SanLuisAutomotores.com

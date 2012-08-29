@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar usuario{% endblock %}
+
+{% block style %}
+#conformity { padding-right: 30px; padding-bottom: 30px; }
+{% endblock %}
+
+{% block content %}
+<div id="content_left" class="grid_10">
+	<h2>Registrar Usuario</h2>
+	{% if successful_registration %}
+	<br/><p>¡¡Su cuenta de usuario fué registrada con éxito!!.</p></br>
+	<p>Se le envió un correo electronico a la dirección que ustés precisó con los pasos para validar su cuenta en SanLuisAutomotores.com</p>
+	{% else  %}
+	<form id="form_admin" method="POST" action=".">
+		{% csrf_token %}
+		{% include "form.html" %}
+		<p id="conformity" class="prefix_3">Al hacer click en "Registrarse" muestras tu conformidad con nuestros <a href="{% url terms %}">Términos y condiciones</a> y aceptas haber leído y comprendido nuestras <a href="{% url policies %}">Políticas de privacidad</a> de datos.</p>
+		<div class="clear"></div>
+		<div class="prefix_3">
+			<input type="submit" value="Registrarse">
+		</div>
+	</form>
+	{% endif %}
+</div>
+<div id="content_right" class="grid_6">
+	<h2>Seguinos en Facebook</h2>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FSanLuisAutomotores&amp;width=340&amp;height=335&amp;colorscheme=light&amp;show_faces=true&amp;border_color=%23FFF&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:340px; height:335px;" allowTransparency="true"></iframe>
+</div>
+<div class="clear"></div>
+{% endblock %}

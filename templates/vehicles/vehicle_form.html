@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Publicar{% endblock %}
+
+{% block content %}
+<div id="content_left" class="grid_10">
+	<h2>Publicar</h2>
+	<form id="form_admin" enctype="multipart/form-data" method="POST" action=".">
+		{% csrf_token %}
+		{% include "form.html" %}
+		<div class="prefix_2">
+			<input type="submit" value="Publicar">
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>
+
+<div id="content_right" class="grid_6">
+</div>
+<div class="clear"></div>
+{% endblock %}

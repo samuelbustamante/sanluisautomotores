@@ -1,0 +1,37 @@
+{% for field in form %} 
+<div class="grid_10 alpha omega">
+	<div class="grid_3 alpha">
+		{{ field.label_tag }}
+	</div>
+	<div class="grid_3 omega">
+		{{ field }}
+	</div>
+	<div class="grid_4"> 
+		<div class="tip_error" id="tip_error_{{ field.html_name }}">
+			{{ field.errors }} 
+		</div>
+		<div class="tip_help" id="tip_help_{{ field.html_name }}">{{ field.help_text }}</div>
+	</div>
+</div>
+<div class="clear"></div>
+{% endfor %} 
+<script type="text/javascript">
+	$(document).ready(function() {
+		var show_help = function(){
+			var name = $(this).attr('name');
+			$('#tip_help_' + name ).show();
+		};
+		var hide_help = function(){
+			var name = $(this).attr('name');
+			$('#tip_help_' + name ).hide();
+		};
+		var hide_error = function(){
+			var name = $(this).attr('name');
+			$('#tip_error_' + name ).hide();
+		};
+		$('#content_left input[type=password]').focusin(show_help).focusout(hide_help).focusin(hide_error);
+		$('#content_left input[type=text]').focusin(show_help).focusout(hide_help).focusin(hide_error);
+		$('#content_left textarea').focusin(show_help).focusout(hide_help).focusin(hide_error);
+		$('#content_left select').focusin(show_help).focusout(hide_help).focusin(hide_error);
+	});
+</script>

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block style %}.vehicle { margin-top:15px;padding-top:15px;border-top: 1px dotted #DDD;}.vehicle.first { border-top:0;padding-top:0; }.vehicle_title { background: url(/static/images/line.png) 0 12px no-repeat;font-weight:bold; }.vehicle_title a { background:#FFF;padding-right:5px; }.vehicle_title span { float:right;background:#FFF;padding-left:5px; }.vehicle_image { width:100px; height:75px; }.vehicle_location { color:#888; }input, select, textarea { width:100%;margin-bottom:20px !important; }input[type="submit"] { padding: 5px 20px;color: white;background: #068;border: 1px solid #068;text-shadow: none;margin-bottom:0;width:auto;}{% endblock %}
+
+{% block content %}
+<div id="content_left" class="grid_4">
+	<h2>Categorias</h2>
+	<ul class="submenu">
+	{% for id, vehicle in vehicles %}
+		<li class="grid_4 omega alpha {% if forloop.first %}first{% endif %}"><a href="{% url vehicle_list id vehicle|slugify %}">{{ vehicle }}</a><span></span></li>
+	{% endfor %}
+	</ul>
+	<div class="clear"></div>
+</div>
+<div id="content_right" class="grid_12">
+	<h2>Últimos Automotores</h2>
+	{% if object_list %}
+		{% for vehicle in object_list %}
+		<div class="vehicle grid_6 {% if forloop.counter|divisibleby:2 %}omega{% else %}alpha{% endif %}{% if forloop.counter <= 2 %} first{% endif %}">
+			<div class="grid_2 alpha">
+				<img class="vehicle_image" src="{{ vehicle.image1.thumbnail.url }}" />
+		</div>
+		<div class="grid_4 omega">
+			<p class="vehicle_title">
+				<a href="{% url vehicle_detail vehicle.id vehicle|slugify %}">{{ vehicle }}</a>
+				<span>${{ vehicle.price }}</span>
+			</p>
+			<p>{{ vehicle.description|truncatechars:70 }}</p>
+			<p class="vehicle_location">{{ vehicle.get_location_display }}</p>
+		</div>
+	</div>
+	{% if forloop.counter|divisibleby:2 %}
+	<div class="clear"></div>
+	{% endif %}
+	{% endfor %}
+	{% else %}
+	<p style="font-size:20px; text-align:center;padding-top:70px;">Se el Primero en Publicar !!!</p>
+	<p style="font-size:20px; text-align:center;padding-top:20px;"><a href="{% url create_vehicle %}">!!! Publicar GRATIS !!!</a></p>
+	{% endif %}
+	<h2 style="margin:10px 0;">Seguinos en Facebook</h2>
+	<fb:like-box href="http://www.facebook.com/SanLuisAutomotores" width="700" show_faces="true" border_color="#FFF" stream="false" header="false"></fb:like-box>
+</div>
+<div class="clear"></div>
+{% endblock %}

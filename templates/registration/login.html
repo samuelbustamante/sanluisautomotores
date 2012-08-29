@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Ingresar{% endblock %}
+
+{% block content %}
+<div id="content_left" class="grid_10">
+	<h2>Ingresar</h2>
+	<form id="form_admin" method="POST" action=".">
+		{% csrf_token %}
+		{% include "form.html" %}
+		<div class="prefix_3">
+			<input type="submit" value="Ingresar">
+		</div>
+	</form>
+</div>
+<div id="content_right" class="grid_6">
+	<h2>Seguinos en Facebook</h2>
+	<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FSanLuisAutomotores&amp;width=340&amp;height=335&amp;colorscheme=light&amp;show_faces=true&amp;border_color=%23FFF&amp;stream=false&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:340px; height:335px;" allowTransparency="true"></iframe>
+</div>
+<div class="clear"></div>
+{% endblock %}

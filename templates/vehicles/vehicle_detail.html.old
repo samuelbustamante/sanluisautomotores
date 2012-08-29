@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object }}{% endblock %}
+
+{% block style %}#InfoVehicle p { padding-bottom:5px;margin-bottom:5px;border-bottom:1px dotted #DDD;}{% endblock %}
+
+{% block content %}
+<div id="content_left" class="grid_16">
+	<h2><a href="{% url home %}" title="Inicio">Inicio</a> > <a href="{% url vehicle_list object.type_vehicle object.get_type_vehicle_display|slugify %}" title="{{ object.get_type_vehicle_display }}">{{ object.get_type_vehicle_display }}</a> > {{ object }}<span class="right text_center" title="Precio">${{ object.price }}</span></h2>
+	<div class="grid_8 alpha" style="padding-top:20px;">
+		<div>
+			<a href="{{ object.image1.url }}" id="jqzoom" rel='gal1'>
+				<img style="padding-bottom:20px;" class="grid_8 alpha" src="{{ object.image1.url }}" />
+			</a>
+		</div>
+<!--
+		<div class="grid_2 alpha">
+			<a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage:'{{ object.image1.thumbnail.url }}', largeimage: '{{ object.image1.url }}'}">
+	         <img src="{{ object.image1.thumbnail.url }}" />
+			</a>
+      </div>
+		{% if object.image2 %}
+		<div class="grid_2">
+			<a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage:'{{ object.image2.thumbnail.url }}', largeimage: '{{ object.image2.url }}'}">
+				<img src="{{ object.image2.thumbnail.url }}" />
+			</a>
+		</div>
+		{% endif %}
+		{% if object.image3 %}
+		<div class="grid_2 omega">
+			<a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage:'{{ object.image3.thumbnail.url }}', largeimage: '{{ object.image3.url }}'}">
+				<img src="{{ object.image3.thumbnail.url }}" />
+			</a>
+		</div>
+		{% endif %}
+      {% if object.image4%}
+      <div class="grid_2 omega">
+         <a class="zoomThumbActive" href='javascript:void(0);' rel="{gallery: 'gal1', smallimage:'{{ object.image4.thumbnail.url }}', largeimage: '{{ object.image4.url }}'}">
+            <img src="{{ object.image4.thumbnail.url }}" />
+         </a>
+      </div>
+      {% endif %}
+-->
+	</div>
+	<div id="InfoVehicle" class="grid_8 omega" style="padding-top:20px;">
+		<div class="grid_8 alpha"><p><b>Localidad : </b>{{ object.get_location_display }}</p></div>
+		<div class="grid_8 alpha"><p><b>Tel. de Contacto : </b>{{ object.contact }}</p></div>
+		<div class="grid_8 alpha"><p><b>Descripción : </b>{{ object.description }}</p></div>
+		<div class="grid_8 alpha" style="padding:15px 0;">
+			<div style="float:left;width:100px;"><g:plusone href="http://www.sanluisautomotores.com{% url vehicle_detail object.id object|slugify %}"></g:plusone></div>
+			<div style="float:left;width:120px;"><a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.planesweb.com.ar/" data-lang="es">Twittear</a></div>
+			<div style="float:left;width:110px;"><fb:like href="http://www.sanluisautomotores.com{% url vehicle_detail object.id object|slugify %}" send="false" layout="button_count" width="100" show_faces="false"></fb:like></div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<link rel="stylesheet" href="{{ STATIC_URL }}js/css/jquery.jqzoom.css" />
+<script src="{{ STATIC_URL }}js/jquery.jqzoom-core-pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#jqzoom').jqzoom({
+            zoomType: 'standard',
+            lens:true,
+            preloadImages: false,
+            alwaysOn:false,
+				zoomWidth: 460,
+            zoomHeight: 345, 
+				title: false,
+        });
+});
+</script>
+<script type="text/javascript">window.___gcfg = {lang: 'es'};(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}

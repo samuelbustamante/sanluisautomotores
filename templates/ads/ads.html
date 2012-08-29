@@ -1,0 +1,12 @@
+<div id="TypeAd" class="grid_10">
+	{% for ad in ads %}
+	<ul class="submenu">
+		<li class="first"><a href="{% url create_free_car %}">Publicar auto gratis.</a></li>
+		<li><a href="{% url create_silver_motorcycle %}">Publicar moto destacado.</a></li>
+		<li><a href="{% url create_gold_motorcycle %}">Publicar moto premium.</a></li>
+		<li><a href="{% url create_free_motorcycle %}">Publicar moto gratis.</a></li>
+		<li><a href="{% url create_silver_motorcycle %}">Publicar moto destacado.</a></li>
+		<li><a href="{% url create_gold_motorcycle %}">Publicar moto premium.</a></li>
+	</ul>
+	{% endfor %}
+</div>

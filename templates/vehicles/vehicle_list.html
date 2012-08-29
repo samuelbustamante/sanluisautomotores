@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object_list.0.get_type_vehicle_display }}{% endblock %}
+
+{% block style %}.vehicle_title { background: url(/static/images/line.png) 0 12px no-repeat;font-weight:bold; padding-bottom:3px;}.vehicle_title a { background:#FFF;padding-right:5px; }.vehicle_title span { float:right;background:#FFF;padding-left:5px; }.vehicle_image { width:100px; height:75px; }.vehicle_location { color:#888; padding-top: 3px;}#paginator{text-align:center;padding-top:20px;}#paginator a{padding:0 10px;}{% endblock %}
+
+{% block content %}
+{% if object_list %}
+<div id="content_left" class="grid_11">
+	<h2><a href="{% url home %}">Inicio</a> > {{ object_list.0.get_type_vehicle_display }}</h2>
+	<div id="list">
+	{% for vehicle in object_list %}
+		<div style="margin-top:10px;padding-bottom:10px;border-bottom: 1px dotted #DDD;">
+			<div class="grid_2 alpha">
+				<img style="width:100px;" src="{{ vehicle.image1.thumbnail.url }}" />
+			</div>
+			<div class="grid_9 omega">
+				<p class="vehicle_title"><a href="{% url vehicle_detail vehicle.id vehicle|slugify %}">{{ vehicle }}</a><span>${{ vehicle.price }}</span></p>
+				<p>{{ vehicle.description|truncatechars:160 }}</p>
+				<p class="vehicle_location">{{ vehicle.get_location_display }}</p>
+			</div>
+			<div class="clear"></div>
+		</div>
+	{% endfor %}
+		<p id="paginator">
+			{% if page_obj.has_previous %}
+			<a href="?pagina={{ page_obj.previous_page_number }}">Anterior</a>
+			{% endif %}
+			{% if page_obj.has_previous and page_obj.has_next %}
+			|
+			{% endif %}
+			{% if page_obj.has_next %}
+			<a href="?pagina={{ page_obj.next_page_number }}">Siguiente</a>
+			{% endif %}
+		</p>
+	</div>
+</div>
+<div id="content_right" class="grid_5">
+</div>
+<div class="clear"></div>
+{% else %}
+<div class="grid_16">
+   <p style="font-size:20px; text-align:center;padding-top:20px;">Se el Primero en Publicar !!!</p>
+   <p style="font-size:20px; text-align:center;padding-top:20px;"><a href="{% url create_vehicle %}">!!! Publicar GRATIS !!!</a></p>
+</div>
+{% endif %}
+
+{% endblock %}
